@@ -1,0 +1,5 @@
+10.0
+3
+1       SQLCHAR       0       12      "\t"                      1     shipperid       ""
+2       SQLCHAR       0       80      "\t"                      2     companyname     Latin1_General_CI_AS
+3       SQLCHAR       0       48      "\r\n"                    3     phone           Latin1_General_CI_AS

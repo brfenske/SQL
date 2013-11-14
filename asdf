@@ -1,0 +1,406 @@
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+NAME        : cgasp_GetPatientSearchResults 
+AUTHOR      : Prabhat Tripathi 
+DATE        : 08/22/2005 
+LAST REV      : 08/22/2005 
+REVISION HISTORY    :  
+
+
+PURPOSE      : Retrieve Patients based on PatientID, PatientName or EpisodeID. 
+BUSINESS RULES    :   
+            - 1. Search Patient 
+CREATES      : N/A 
+USES        :  
+
+            - T: Patient, Episode 
+PARAMETERS IN    :  
+           
+             
+PARAMETERS OUT    : @Return returns 
+            - (0)  : Successful 
+            - (-1)  : Generic failure 
+RELATIONS      :  
+GOOD JOINS      :   
+OTHERS        :  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/ 
+CREATE PROCEDURE [cgasp_GetPatientSearchResults] (@UserSessionID  INT = 0, 
+                                                  @patientString  VARCHAR(255) = 
+'', 
+                                                  @startIndex     INT = 0, 
+                                                  @pageSize       INT = 25, 
+                                                  @sortColumn     VARCHAR(255) = 
+'PatientName', 
+                                                  @sort           VARCHAR(5)= 
+'ASC', 
+                                                  @CCGFlag        BIT =0, 
+                                                  @Context        VARCHAR(30) = 
+'', 
+                                                  @recordCount    INT OUT, 
+                                                  @showDeleted    BIT = 0, 
+                                                  @showAll  BIT=0,
+                                                  @Debug          BIT = 0) 
+AS 
+  DECLARE @errCode INT; 
+  DECLARE @procName VARCHAR(50); 
+  DECLARE @PatientResourceTypeID   INT, 
+          @EpisodeResourceTypeID   INT, 
+          @ReadAccessTypeBitMask   INT, 
+          @CreateAccessTypeBitMask INT; 
+
+  SET @PatientResourceTypeID = 3; 
+  SET @EpisodeResourceTypeID = 8; 
+  SET @ReadAccessTypeBitMask = 2; 
+  SET @CreateAccessTypeBitMask = 4; 
+  SET @errCode = 0; 
+  SET @procName = 'cgasp_GetPatientSearchResults'; 
+
+  --  
+  IF @Debug = 1 
+    BEGIN 
+        PRINT @procName + ': Begin' 
+    END 
+
+  DECLARE @SQLStatement VARCHAR(8000) 
+  DECLARE @SelectString VARCHAR(4000) 
+  DECLARE @CriteriaString VARCHAR(6000) 
+  DECLARE @OrderByString VARCHAR(2000) 
+
+  SET @SelectString = '' 
+  SET @CriteriaString = '' 
+  SET @OrderByString = '' 
+
+  DECLARE @RecordStart INT 
+  DECLARE @RecordEnd INT 
+  DECLARE @today DATETIME 
+
+  SET @RecordStart = @startIndex 
+  SET @RecordEnd = @startIndex + @pageSize 
+  SET @today = Getutcdate(); 
+
+  -- Adding a padding here to account for rows getting filtered out after result set has already been inserted in #temptable.
+  DECLARE @recordCountWithPadding INT
+  SET @recordCountWithPadding = @recordCount + 100
+
+  -- Create a temp table to hold the current page of data 
+  -- Add an ID column to count the records 
+  CREATE TABLE #temptable 
+    ( 
+       clientid        INT IDENTITY PRIMARY KEY, 
+       patientid       INT, 
+       patientidsource VARCHAR(100), 
+       mrn			   VARCHAR(50),
+       patientname     VARCHAR(255), 
+       ccgflag         BIT, 
+       isvipflag       BIT, 
+       ssn             VARCHAR(50), 
+       gender          VARCHAR(50), 
+       dateofbirth     DATETIME, 
+       address1        VARCHAR(255), 
+       address2        VARCHAR(255), 
+       city            VARCHAR(50), 
+       [State]         VARCHAR(50), 
+       postalcode      VARCHAR(25), 
+       policystartdate DATETIME, 
+       policyenddate   DATETIME, 
+       BenefitEligibilityDate DATETIME,
+       BenefitDisenrollmentDate DATETIME,          
+       benefitPlanName varchar(100),
+       BenefitPlanCode varchar(32),
+       nextreviewdate  DATETIME, 
+       secmask         INT 
+    ) 
+
+  CREATE TABLE #temptableresult 
+    ( 
+       clientid        INT IDENTITY PRIMARY KEY, 
+       patientid       INT, 
+       patientidsource VARCHAR(100), 
+       mrn			   VARCHAR(50),
+       patientname     VARCHAR(255), 
+       ccgflag         BIT, 
+       isvipflag       BIT, 
+       ssn             VARCHAR(50), 
+       gender          VARCHAR(50), 
+       dateofbirth     DATETIME, 
+       address1        VARCHAR(255), 
+       address2        VARCHAR(255), 
+       city            VARCHAR(50), 
+       [State]         VARCHAR(50), 
+       postalcode      VARCHAR(25), 
+       policystartdate DATETIME, 
+       policyenddate   DATETIME, 
+       BenefitEligibilityDate DATETIME,
+       BenefitDisenrollmentDate DATETIME,   
+       benefitPlanName varchar(100),
+       BenefitPlanCode varchar(32),
+       nextreviewdate  DATETIME, 
+       secmask         INT 
+    ) 
+
+  --Build Select part 
+  SELECT @SelectString = 'SELECT TOP ( ' + CAST(@recordCountWithPadding AS VARCHAR) + 
+                         ' ) P.PatientID, 
+                             P.PatientIDSource,  
+                              P.MRN,
+                             CASE P.IsVIP WHEN 1 THEN ''XXXXXXXX''
+                               WHEN 0 THEN P.LastName +'', ''+ P.FirstName + '' '' + ISNULL(P.MiddleInitial, '''')
+                             END as PatientName,
+                             p.CCGFlag,
+                             P.IsVIP, 
+                             P.SSN, 
+                             RG.Text as Gender, 
+                             P.DateOfBirth,  
+                             P.Address1, 
+                             P.Address2, 
+                             P.City, 
+                             RS.Description as [State], 
+                             P.PostalCode, 
+                             P.PolicyStartDate, 
+                             P.PolicyEndDate,
+                             P.BenefitEligibilityDate,
+                             P.BenefitDisenrollmentDate,
+                             BP.BenefitPlanName, 
+                             BP.Code as BenefitPlanCode,
+                             CASE ' + CAST( @CCGFlag AS VARCHAR(1)) +  
+                             ' WHEN 1 THEN dbo.fx_cgasp_GetPatientNextReviewDate(p.PatientID,''' + 
+                             CAST (@today AS VARCHAR(25)) + ''') ELSE NULL END AS ''NextReviewDate'' ,
+                             vSRA.SecMask as SecMask 
+                             FROM  [Patient] P 
+                             LEFT OUTER JOIN [BenefitPlan] BP ON ( P.BenefitPlanID = BP.BenefitPlanID ) 
+                             LEFT OUTER JOIN [RefState] RS ON ( P.StateID = RS.ID ) 
+                             LEFT OUTER JOIN [RefGender] RG on P.GenderID = RG.ID  
+                             JOIN [PatientGroup] PG ON ( P.PatientID = PG.PatientID )                  
+                             JOIN [v_SessionResourceAccess] vSRA ON ( vSRA.GroupID = PG.GroupID AND vSRA.UserSessionID = '+ Str (@UserSessionID) + 
+                             ' AND vSRA.ResourceTypeID = ' + Str ( 
+								@PatientResourceTypeID) + ' AND vSRA.SecMask &  ' + Str ( 
+								@ReadAccessTypeBitMask) + ' = ' + Str ( 
+								@ReadAccessTypeBitMask) + ' ) '; 
+
+  IF ( @Context = 'Episode' ) 
+    -- If the caller intends to use this result in the creating of an episode, we 
+    -- should only return patients for which the current user has create episode privilege. 
+    BEGIN 
+        SET @SelectString = 
+        @SelectString + ' INNER JOIN ( SELECT UserSessionID, GroupID, SecMask ' 
+        + 
+                            ' FROM [v_SessionResourceAccess] ' + 
+                            ' WHERE UserSessionID = ' + Str( 
+        @UserSessionID) + 
+                            ' AND ResourceTypeID = ' + Str( 
+        @EpisodeResourceTypeID) + 
+                            ' AND SecMask & ' + Str( 
+        @CreateAccessTypeBitMask) + ' = ' + 
+                     Str(@CreateAccessTypeBitMask) + 
+        ' ) esec ON ( pg.GroupID = esec.GroupID ) '; 
+    END; 
+
+  --Build Criteria part 
+  SELECT @CriteriaString = 'where ((' + 
+  dbo.Fx_cgasp_buildnamepermutationsearch(@patientString, 
+  'P.') + 
+  ') OR ' + ' BP.BenefitPlanName like ''' +  @patientString + '%'' ESCAPE ''\'' or '
+
+  DECLARE @id INT 
+
+  SELECT @id = 1 
+
+  DECLARE @max_id INT 
+  DECLARE @patientSubString VARCHAR(100) 
+  -- table declaration needs to match dbo.fx_cgasp_ParseInputString return type 
+  DECLARE @paramTable TABLE ( 
+    id         INT PRIMARY KEY, 
+    identifier VARCHAR(100)) 
+
+  INSERT INTO @paramTable 
+  SELECT * 
+  FROM   dbo.Fx_cgasp_parseinputstring(@patientString) 
+
+  SELECT @max_id = MAX(id) 
+  FROM   @paramTable 
+
+  WHILE @id <= @max_id 
+    BEGIN 
+        SELECT @patientSubString = identifier 
+        FROM   @paramTable 
+        WHERE  id = @id 
+
+        SELECT @CriteriaString = @CriteriaString + 'P.PatientIDSource like ''' + 
+                                 CAST( 
+                                 @patientSubString AS VARCHAR( 
+                                 100)) + 
+                                        '%'' ESCAPE ''\''' 
+               SELECT @CriteriaString = @CriteriaString + ' or ' 
+                                        
+           SELECT @CriteriaString = @CriteriaString + 'P.MRN like ''' + 
+                                 CAST( 
+                                 @patientSubString AS VARCHAR( 
+                                 100)) + 
+                                        '%'' ESCAPE ''\''' 
+
+        IF( @id < @max_id ) 
+          SELECT @CriteriaString = @CriteriaString + ' or ' 
+
+        SET @id = @id + 1 
+    END 
+
+  SELECT @CriteriaString = @CriteriaString + ') and ' + CAST( 
+                           @CCGFlag AS VARCHAR(1)) + 
+                                  ' = (CASE ' + CAST( 
+                                                    @CCGFlag AS VARCHAR(1)) + 
+                           ' WHEN 1 THEN P.CCGFlag ELSE ' 
+                           + CAST 
+                                  ( 
+                                                    @CCGFlag AS VARCHAR(1)) + 
+                           ' END)' 
+
+  IF ( @showDeleted = 0 ) 
+    BEGIN 
+        SELECT @CriteriaString = @CriteriaString + ' AND P.Active = 1' 
+    END 
+
+  --Build Order By part   
+  SELECT @OrderByString = ' ORDER BY ' + CASE (@sortColumn) 
+                                           WHEN 'PatientIDSource' THEN 
+                                           'P.[PatientIDSource] ' + @sort 
+                                           WHEN 'PatientName' THEN 
+                                           'P.LastName ' + @sort + 
+                                           ', P.FirstName ' + @sort 
+                                           WHEN 'Gender' THEN 
+                                           'RG.[Text] ' + @sort 
+                                           WHEN 'City' THEN 'City ' + @sort 
+                                           WHEN 'DateOfBirth' THEN 
+                                           'P.[DateOfBirth] ' + @sort 
+                                           WHEN 'NextReviewDate' THEN 
+                                           'NextReviewDate ' + @sort
+                                           WHEN 'BenefitPlanName' THEN
+                                             'BP.[BenefitPlanName] ' + @sort 
+                                         END 
+
+  SELECT @SQLStatement = @SelectString + @CriteriaString + @OrderByString 
+
+  PRINT @SQLStatement 
+
+  -- Now using top( n ) 
+  --SET ROWCOUNT @recordCount; 
+  --Fill the temp table with the reminders 
+  INSERT INTO #temptable 
+  EXEC(@SQLStatement) 
+
+  SELECT @errCode = @errCode + @@ERROR; 
+
+  IF @Debug = 1 
+    BEGIN 
+        PRINT 'Error: ' + @errCode 
+    END 
+
+  If(@showAll=1)
+   BEGIN
+      SELECT TEMP.*
+	  FROM   #temptable TEMP 
+	  WHERE  TEMP.clientid > @RecordStart 
+			 AND TEMP.clientid <= @RecordStart + @pageSize 
+	  ORDER  BY TEMP.clientid; 
+	 
+	  SELECT @recordCount = COUNT(*) 
+	  FROM   #temptable; 
+   END
+  ELSE 
+   BEGIN   
+
+	  INSERT INTO #temptableresult 
+	  SELECT TOP(@recordCount)
+			 p.patientid, 
+			 p.patientidsource, 
+			 p.mrn,
+			 CASE p.isvip 
+			   WHEN 1 THEN 'XXXXXXXX' 
+			   WHEN 0 THEN p.lastname + ', ' + p.firstname + ' ' + 
+						   Isnull(p.middleinitial, '') 
+			 END            AS patientname, 
+			 p.ccgflag, 
+			 p.isvip        AS isvipflag, 
+			 p.ssn, 
+			 rg.TEXT        AS gender, 
+			 p.dateofbirth, 
+			 p.address1, 
+			 p.address2, 
+			 p.city, 
+			 rs.DESCRIPTION AS [State], 
+			 p.postalcode, 
+			 p.policystartdate, 
+			 p.policyenddate, 
+                         p.BenefitEligibilityDate,
+                         p.BenefitDisenrollmentDate,
+			 bp.benefitPlanName,
+			 bp.Code as BenefitPlanCode,
+			 CASE CAST(@CCGFlag AS VARCHAR(1)) 
+			   WHEN 1 THEN dbo.Fx_cgasp_getpatientnextreviewdate(p.patientid, CAST ( 
+						   @today AS VARCHAR(25))) 
+			   ELSE NULL 
+			 END            AS nextreviewdate, 
+			 vsra.secmask   AS secmask 
+	  FROM   [Patient] p 
+			 LEFT OUTER JOIN [BenefitPlan] bp ON (p.BenefitPlanID = bp.BenefitPlanID) 
+			 LEFT OUTER JOIN [RefState] rs 
+			   ON ( p.stateid = rs.id ) 
+			 LEFT OUTER JOIN [RefGender] rg 
+			   ON p.genderid = rg.id 
+			 JOIN [PatientGroup] pg 
+			   ON ( p.patientid = pg.patientid ) 
+			 JOIN [v_SessionResourceAccess] vsra 
+			   ON ( vsra.groupid = pg.groupid 
+					AND vsra.usersessionid = Str (@UserSessionID) 
+					AND vsra.resourcetypeid = Str (@PatientResourceTypeID) 
+					AND vsra.secmask & Str (@ReadAccessTypeBitMask) = Str ( 
+						@ReadAccessTypeBitMask) 
+				  ) 
+				  AND p.active = 1 
+			JOIN
+			(
+				SELECT a.*
+				FROM
+				(
+					SELECT
+						pc.clientid,
+						pc.patientid,
+						Row_number () OVER(PARTITION BY pc.patientid ORDER BY pc.patientid) rn
+					FROM
+					(
+						SELECT
+							Isnull(ph.patientid, t.patientid) patientid,
+							t.clientid
+						FROM #temptable t
+						LEFT JOIN patienthierarchy ph
+							ON (ph.childpatientid = t.patientid) AND (ph.Active = 1)
+					) pc
+				) a
+				WHERE  a.rn = 1
+			) res
+				ON res.patientid = p.patientid
+			ORDER BY res.clientid;
+
+
+	  SELECT TEMP.*
+	  FROM   #temptableresult TEMP 
+	  WHERE  TEMP.clientid > @RecordStart 
+			 AND TEMP.clientid <= @RecordStart + @pageSize 
+	  ORDER  BY TEMP.clientid; 
+	 
+	  SELECT @recordCount = COUNT(*) 
+	  FROM   #temptableresult; 
+   END
+
+  --Drop temp table 
+  DROP TABLE #temptable ;
+  DROP TABLE #temptableresult; 
+
+  IF @Debug = 1 
+    BEGIN 
+        PRINT 'Error: ' + @errCode 
+
+        PRINT 'End: ' + @procName 
+    END 
+
+  SET nocount OFF

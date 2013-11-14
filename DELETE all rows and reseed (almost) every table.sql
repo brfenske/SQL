@@ -1,0 +1,1187 @@
+--------------------------------
+-- DO NOT CHANGE THE ORDER!!!!!!
+--------------------------------
+DELETE FROM  [ProgressionElementNote]
+DBCC CHECKIDENT (ProgressionElementNote, RESEED, 11234)
+
+DELETE FROM  [CaseProblemAD]
+DBCC CHECKIDENT (CaseProblemAD, RESEED, 21234)
+
+DELETE FROM  [RuleExecutionLog]
+DBCC CHECKIDENT (RuleExecutionLog, RESEED, 31234)
+
+DELETE FROM  [DocumentedProgressionElement]
+DBCC CHECKIDENT (DocumentedProgressionElement, RESEED, 41234)
+
+DELETE FROM  [AssessmentProblem]
+DBCC CHECKIDENT (AssessmentProblem, RESEED, 51234)
+
+DELETE FROM  [AssessmentDocumentation]
+DBCC CHECKIDENT (AssessmentDocumentation, RESEED, 61234)
+
+DELETE FROM  [RuleSetExecutionLog]
+DBCC CHECKIDENT (RuleSetExecutionLog, RESEED, 71234)
+
+DELETE FROM  [ProgressionElement]
+DBCC CHECKIDENT (ProgressionElement, RESEED, 81234)
+
+DELETE FROM  [OutlineNote]
+DBCC CHECKIDENT (OutlineNote, RESEED, 91234)
+
+DELETE FROM  [OutlineDocDefInd]
+DBCC CHECKIDENT (OutlineDocDefInd, RESEED, 101234)
+
+DELETE FROM  [OtherIndication]
+DBCC CHECKIDENT (OtherIndication, RESEED, 111234)
+
+DELETE FROM  [CaseIntervention]
+DBCC CHECKIDENT (CaseIntervention, RESEED, 121234)
+
+DELETE FROM  [CaseGoalREDateLink]
+DBCC CHECKIDENT (CaseGoalREDateLink, RESEED, 131234)
+
+DELETE FROM  [CaseGoalNoteLink]
+DBCC CHECKIDENT (CaseGoalNoteLink, RESEED, 141234)
+
+DELETE FROM  [CaseGoalBarrier]
+DBCC CHECKIDENT (CaseGoalBarrier, RESEED, 151234)
+
+DELETE FROM  [CareDayVariance]
+DBCC CHECKIDENT (CareDayVariance, RESEED, 161234)
+
+DELETE FROM  [CareDayNotes]
+DBCC CHECKIDENT (CareDayNotes, RESEED, 171234)
+
+DELETE FROM  [CareDayEncounter]
+DBCC CHECKIDENT (CareDayEncounter, RESEED, 181234)
+
+DELETE FROM  [Assessment]
+DBCC CHECKIDENT (Assessment, RESEED, 191234)
+
+DELETE FROM  [QuestionAnswerSetMember]
+DBCC CHECKIDENT (QuestionAnswerSetMember, RESEED, 201234)
+
+DELETE FROM  [Progression]
+DBCC CHECKIDENT (Progression, RESEED, 211234)
+
+DELETE FROM  [Outline]
+DBCC CHECKIDENT (Outline, RESEED, 221234)
+
+DELETE FROM  [ContactConsentLog]
+DBCC CHECKIDENT (ContactConsentLog, RESEED, 231234)
+
+DELETE FROM  [CaseProgramGuideline]
+DBCC CHECKIDENT (CaseProgramGuideline, RESEED, 241234)
+
+DELETE FROM  [CaseProblemNoteLink]
+DBCC CHECKIDENT (CaseProblemNoteLink, RESEED, 251234)
+
+DELETE FROM  [CaseGoal]
+DBCC CHECKIDENT (CaseGoal, RESEED, 261234)
+
+DELETE FROM  [CareDayInfo]
+DBCC CHECKIDENT (CareDayInfo, RESEED, 271234)
+
+DELETE FROM  [AuthorizationRequestNote]
+DBCC CHECKIDENT (AuthorizationRequestNote, RESEED, 281234)
+
+DELETE FROM  [AuthorizationRequestItem]
+DBCC CHECKIDENT (AuthorizationRequestItem, RESEED, 291234)
+
+DELETE FROM  [AuthorizationRequestEntryPoint]
+DBCC CHECKIDENT (AuthorizationRequestEntryPoint, RESEED, 301234)
+
+DELETE FROM  [WorkQueue]
+DBCC CHECKIDENT (WorkQueue, RESEED, 311234)
+
+DELETE FROM  [TaskEpisode]
+DBCC CHECKIDENT (TaskEpisode, RESEED, 321234)
+
+DELETE FROM  [TaskCase]
+DBCC CHECKIDENT (TaskCase, RESEED, 331234)
+
+DELETE FROM  [QuestionAnswer]
+DBCC CHECKIDENT (QuestionAnswer, RESEED, 341234)
+
+DELETE FROM  [QASQuestion]
+DBCC CHECKIDENT (QASQuestion, RESEED, 351234)
+
+DELETE FROM  [GoalIntervention]
+DBCC CHECKIDENT (GoalIntervention, RESEED, 361234)
+
+DELETE FROM  [EpisodeSummaryBatchDetail]
+DBCC CHECKIDENT (EpisodeSummaryBatchDetail, RESEED, 371234)
+
+DELETE FROM  [EpisodeSummary]
+DBCC CHECKIDENT (EpisodeSummary, RESEED, 381234)
+
+DELETE FROM  [EpisodeNote]
+DBCC CHECKIDENT (EpisodeNote, RESEED, 391234)
+
+DELETE FROM  [EpisodeGuideline]
+DBCC CHECKIDENT (EpisodeGuideline, RESEED, 401234)
+
+DELETE FROM  [EpisodeDischargeNote]
+DBCC CHECKIDENT (EpisodeDischargeNote, RESEED, 411234)
+
+DELETE FROM  [EpisodeAttachment]
+DBCC CHECKIDENT (EpisodeAttachment, RESEED, 421234)
+
+DELETE FROM  [ClinicalHistoryDocumentation]
+DBCC CHECKIDENT (ClinicalHistoryDocumentation, RESEED, 431234)
+
+DELETE FROM  [CaseProgram]
+DBCC CHECKIDENT (CaseProgram, RESEED, 441234)
+
+DELETE FROM  [CaseProblem]
+DBCC CHECKIDENT (CaseProblem, RESEED, 451234)
+
+DELETE FROM  [CaseNote]
+DBCC CHECKIDENT (CaseNote, RESEED, 461234)
+
+DELETE FROM  [CaseContact]
+DBCC CHECKIDENT (CaseContact, RESEED, 471234)
+
+DELETE FROM  [CaseClosureNote]
+DBCC CHECKIDENT (CaseClosureNote, RESEED, 481234)
+
+DELETE FROM  [CaseBarrier]
+DBCC CHECKIDENT (CaseBarrier, RESEED, 491234)
+
+DELETE FROM  [CaseAttachment]
+DBCC CHECKIDENT (CaseAttachment, RESEED, 501234)
+
+DELETE FROM  [AuthorizationRequest]
+DBCC CHECKIDENT (AuthorizationRequest, RESEED, 511234)
+
+DELETE FROM  [TaskPatient]
+DBCC CHECKIDENT (TaskPatient, RESEED, 521234)
+
+DELETE FROM  [SectionQuestion]
+DBCC CHECKIDENT (SectionQuestion, RESEED, 531234)
+
+DELETE FROM  [QASProblem]
+DBCC CHECKIDENT (QASProblem, RESEED, 541234)
+
+DELETE FROM  [QASBarrier]
+DBCC CHECKIDENT (QASBarrier, RESEED, 551234)
+
+DELETE FROM  [ProblemGoal]
+DBCC CHECKIDENT (ProblemGoal, RESEED, 561234)
+
+DELETE FROM  [PatientSummary]
+DBCC CHECKIDENT (PatientSummary, RESEED, 571234)
+
+DELETE FROM  [PatientNote]
+DBCC CHECKIDENT (PatientNote, RESEED, 581234)
+
+DELETE FROM  [PatientMedicine]
+DBCC CHECKIDENT (PatientMedicine, RESEED, 591234)
+
+DELETE FROM  [PatientHierarchy]
+DBCC CHECKIDENT (PatientHierarchy, RESEED, 601234)
+
+DELETE FROM  [PatientGroup]
+DBCC CHECKIDENT (PatientGroup, RESEED, 611234)
+
+DELETE FROM  [IndicationNote]
+DBCC CHECKIDENT (IndicationNote, RESEED, 621234)
+
+DELETE FROM  [EpisodeViewParameter]
+DBCC CHECKIDENT (EpisodeViewParameter, RESEED, 631234)
+
+DELETE FROM  [Episode]
+DBCC CHECKIDENT (Episode, RESEED, 641234)
+
+DELETE FROM  [ClinicalHistory]
+DBCC CHECKIDENT (ClinicalHistory, RESEED, 651234)
+
+DELETE FROM  [Case]
+DBCC CHECKIDENT (Case, RESEED, 661234)
+
+DELETE FROM  [Survey]
+DBCC CHECKIDENT (Survey, RESEED, 671234)
+
+DELETE FROM  [StaticProgressionElement]
+DBCC CHECKIDENT (StaticProgressionElement, RESEED, 681234)
+
+DELETE FROM  [SectionProblem]
+DBCC CHECKIDENT (SectionProblem, RESEED, 691234)
+
+DELETE FROM  [SectionBarrier]
+DBCC CHECKIDENT (SectionBarrier, RESEED, 701234)
+
+--DELETE FROM  [RefVarianceReasonPublication]
+--DBCC CHECKIDENT (RefVarianceReasonPublication, RESEED, 711234)
+
+--DELETE FROM  [RefEpisodeSummaryView]
+--DBCC CHECKIDENT (RefEpisodeSummaryView, RESEED, 721234)
+
+DELETE FROM  [ProviderBenefitPlan]
+DBCC CHECKIDENT (ProviderBenefitPlan, RESEED, 731234)
+
+DELETE FROM  [Patient]
+DBCC CHECKIDENT (Patient, RESEED, 741234)
+
+DELETE FROM  [OutlineDocumentedIndication]
+DBCC CHECKIDENT (OutlineDocumentedIndication, RESEED, 751234)
+
+DELETE FROM  [FacilityBenefitPlan]
+DBCC CHECKIDENT (FacilityBenefitPlan, RESEED, 761234)
+
+DELETE FROM  [CareflowNode]
+DBCC CHECKIDENT (CareflowNode, RESEED, 771234)
+
+DELETE FROM  [CareflowGroup]
+DBCC CHECKIDENT (CareflowGroup, RESEED, 781234)
+
+DELETE FROM  [BDL_UserRole]
+DBCC CHECKIDENT (BDL_UserRole, RESEED, 791234)
+
+DELETE FROM  [VersionMasterRuleSetDetail]
+DBCC CHECKIDENT (VersionMasterRuleSetDetail, RESEED, 801234)
+
+DELETE FROM  [TaskNote]
+DBCC CHECKIDENT (TaskNote, RESEED, 811234)
+
+DELETE FROM  [SubjectRefData]
+DBCC CHECKIDENT (SubjectRefData, RESEED, 821234)
+
+DELETE FROM  [SubjectOperator]
+DBCC CHECKIDENT (SubjectOperator, RESEED, 831234)
+
+DELETE FROM  [SubjectAssociation]
+DBCC CHECKIDENT (SubjectAssociation, RESEED, 841234)
+
+DELETE FROM  [StaticProgression]
+DBCC CHECKIDENT (StaticProgression, RESEED, 851234)
+
+DELETE FROM  [StaticOutline]
+DBCC CHECKIDENT (StaticOutline, RESEED, 861234)
+
+DELETE FROM  [StaticInformation]
+DBCC CHECKIDENT (StaticInformation, RESEED, 871234)
+
+DELETE FROM  [SectionIndication]
+DBCC CHECKIDENT (SectionIndication, RESEED, 881234)
+
+DELETE FROM  [SectionHierarchy]
+DBCC CHECKIDENT (SectionHierarchy, RESEED, 891234)
+
+DELETE FROM  [RptReportCategory]
+DBCC CHECKIDENT (RptReportCategory, RESEED, 901234)
+
+DELETE FROM  [ResourceAccess]
+DBCC CHECKIDENT (ResourceAccess, RESEED, 911234)
+
+--DELETE FROM  [RefVarianceReason]
+--DBCC CHECKIDENT (RefVarianceReason, RESEED, 921234)
+
+DELETE FROM  [PublicationVersion]
+DBCC CHECKIDENT (PublicationVersion, RESEED, 931234)
+
+DELETE FROM  [ProviderUser]
+DBCC CHECKIDENT (ProviderUser, RESEED, 941234)
+
+DELETE FROM  [ProviderGroup]
+DBCC CHECKIDENT (ProviderGroup, RESEED, 951234)
+
+DELETE FROM  [ProfileRoleItem]
+DBCC CHECKIDENT (ProfileRoleItem, RESEED, 961234)
+
+DELETE FROM  [PhaseSubject]
+DBCC CHECKIDENT (PhaseSubject, RESEED, 971234)
+
+DELETE FROM  [MasterLicense]
+DBCC CHECKIDENT (MasterLicense, RESEED, 981234)
+
+DELETE FROM  [FilterTemp]
+DBCC CHECKIDENT (FilterTemp, RESEED, 991234)
+
+DELETE FROM  [Filter]
+DBCC CHECKIDENT (Filter, RESEED, 1001234)
+
+DELETE FROM  [FacilityUser]
+DBCC CHECKIDENT (FacilityUser, RESEED, 1011234)
+
+DELETE FROM  [FacilityLicense]
+DBCC CHECKIDENT (FacilityLicense, RESEED, 1021234)
+
+DELETE FROM  [FacilityGroup]
+DBCC CHECKIDENT (FacilityGroup, RESEED, 1031234)
+
+DELETE FROM  [DataSourceMapping]
+DBCC CHECKIDENT (DataSourceMapping, RESEED, 1041234)
+
+DELETE FROM  [DataSourceCodeSet]
+DBCC CHECKIDENT (DataSourceCodeSet, RESEED, 1051234)
+
+DELETE FROM  [CurrentPatientListView]
+DBCC CHECKIDENT (CurrentPatientListView, RESEED, 1061234)
+
+DELETE FROM  [ContactNote]
+DBCC CHECKIDENT (ContactNote, RESEED, 1071234)
+
+DELETE FROM  [Careflow]
+DBCC CHECKIDENT (Careflow, RESEED, 1081234)
+
+DELETE FROM  [BenefitPlan]
+DBCC CHECKIDENT (BenefitPlan, RESEED, 1091234)
+
+DELETE FROM  [BDL_User]
+DBCC CHECKIDENT (BDL_User, RESEED, 1101234)
+
+DELETE FROM  [BDL_UdfValue]
+DBCC CHECKIDENT (BDL_UdfValue, RESEED, 1111234)
+
+DELETE FROM  [BDL_ProviderBenefitPlan]
+DBCC CHECKIDENT (BDL_ProviderBenefitPlan, RESEED, 1121234)
+
+DELETE FROM  [BDL_Provider]
+DBCC CHECKIDENT (BDL_Provider, RESEED, 1131234)
+
+DELETE FROM  [BDL_PatientBenefitPlan]
+DBCC CHECKIDENT (BDL_PatientBenefitPlan, RESEED, 1141234)
+
+DELETE FROM  [BDL_Patient]
+DBCC CHECKIDENT (BDL_Patient, RESEED, 1151234)
+
+DELETE FROM  [BDL_File]
+DBCC CHECKIDENT (BDL_File, RESEED, 1161234)
+
+DELETE FROM  [BDL_FacilityBenefitPlan]
+DBCC CHECKIDENT (BDL_FacilityBenefitPlan, RESEED, 1171234)
+
+DELETE FROM  [BDL_Facility]
+DBCC CHECKIDENT (BDL_Facility, RESEED, 1181234)
+
+DELETE FROM  [BDL_AccessControlGroupUser]
+DBCC CHECKIDENT (BDL_AccessControlGroupUser, RESEED, 1191234)
+
+DELETE FROM  [ApplicationParameterCollection]
+DBCC CHECKIDENT (ApplicationParameterCollection, RESEED, 1201234)
+
+DELETE FROM  [ValidResourceAccess]
+DBCC CHECKIDENT (ValidResourceAccess, RESEED, 1211234)
+
+DELETE FROM  [UserSetting]
+DBCC CHECKIDENT (UserSetting, RESEED, 1221234)
+
+DELETE FROM  [UserSession]
+DBCC CHECKIDENT (UserSession, RESEED, 1231234)
+
+DELETE FROM  [UserRole]
+DBCC CHECKIDENT (UserRole, RESEED, 1241234)
+
+DELETE FROM  [UserProfileRole]
+DBCC CHECKIDENT (UserProfileRole, RESEED, 1251234)
+
+DELETE FROM  [UdfDefinition]
+DBCC CHECKIDENT (UdfDefinition, RESEED, 1261234)
+
+DELETE FROM  [Task]
+DBCC CHECKIDENT (Task, RESEED, 1271234)
+
+DELETE FROM  [Subject]
+DBCC CHECKIDENT (Subject, RESEED, 1281234)
+
+DELETE FROM  [StaticQuickSearch]
+DBCC CHECKIDENT (StaticQuickSearch, RESEED, 1291234)
+
+DELETE FROM  [StaticGuidelineSearch]
+DBCC CHECKIDENT (StaticGuidelineSearch, RESEED, 1301234)
+
+DELETE FROM  [StaticGuideline]
+DBCC CHECKIDENT (StaticGuideline, RESEED, 1311234)
+
+DELETE FROM  [SessionActivity]
+DBCC CHECKIDENT (SessionActivity, RESEED, 1321234)
+
+DELETE FROM  [SearchGuideline]
+DBCC CHECKIDENT (SearchGuideline, RESEED, 1331234)
+
+DELETE FROM  [SearchData]
+DBCC CHECKIDENT (SearchData, RESEED, 1341234)
+
+DELETE FROM  [SearchCode]
+DBCC CHECKIDENT (SearchCode, RESEED, 1351234)
+
+DELETE FROM  [RuleSetDetail]
+DBCC CHECKIDENT (RuleSetDetail, RESEED, 1361234)
+
+DELETE FROM  [RptReportGroup]
+DBCC CHECKIDENT (RptReportGroup, RESEED, 1371234)
+
+DELETE FROM  [RptRecentReports]
+DBCC CHECKIDENT (RptRecentReports, RESEED, 1381234)
+
+DELETE FROM  [RptCategory]
+DBCC CHECKIDENT (RptCategory, RESEED, 1391234)
+
+--DELETE FROM  [RefVarianceCategory]
+--DBCC CHECKIDENT (RefVarianceCategory, RESEED, 1401234)
+
+--DELETE FROM  [RefTab]
+--DBCC CHECKIDENT (RefTab, RESEED, 1411234)
+
+--DELETE FROM  [RefSection]
+--DBCC CHECKIDENT (RefSection, RESEED, 1421234)
+
+--DELETE FROM  [RefProfileItem]
+--DBCC CHECKIDENT (RefProfileItem, RESEED, 1431234)
+
+--DELETE FROM  [RefPatientListColumn]
+--DBCC CHECKIDENT (RefPatientListColumn, RESEED, 1441234)
+
+--DELETE FROM  [RefPageControl]
+--DBCC CHECKIDENT (RefPageControl, RESEED, 1451234)
+
+--DELETE FROM  [RefLevelOfCarePublication]
+--DBCC CHECKIDENT (RefLevelOfCarePublication, RESEED, 1461234)
+
+--DELETE FROM  [RefField]
+--DBCC CHECKIDENT (RefField, RESEED, 1471234)
+
+--DELETE FROM  [ReferenceData]
+--DBCC CHECKIDENT (ReferenceData, RESEED, 1481234)
+
+--DELETE FROM  [RefDocParentBulletProduct]
+--DBCC CHECKIDENT (RefDocParentBulletProduct, RESEED, 1491234)
+
+--DELETE FROM  [RefDefaultNextReviewDate]
+--DBCC CHECKIDENT (RefDefaultNextReviewDate, RESEED, 1501234)
+
+--DELETE FROM  [RefDataTypeOperator]
+--DBCC CHECKIDENT (RefDataTypeOperator, RESEED, 1511234)
+
+--DELETE FROM  [RefAuthRequestLOC]
+--DBCC CHECKIDENT (RefAuthRequestLOC, RESEED, 1521234)
+
+DELETE FROM  [QuestionAnswerSet]
+DBCC CHECKIDENT (QuestionAnswerSet, RESEED, 1531234)
+
+DELETE FROM  [Question]
+DBCC CHECKIDENT (Question, RESEED, 1541234)
+
+DELETE FROM  [Provider]
+DBCC CHECKIDENT (Provider, RESEED, 1551234)
+
+DELETE FROM  [ProgramGuideline]
+DBCC CHECKIDENT (ProgramGuideline, RESEED, 1561234)
+
+DELETE FROM  [PhaseRuleSet]
+DBCC CHECKIDENT (PhaseRuleSet, RESEED, 1571234)
+
+DELETE FROM  [PhaseDataSourceMap]
+DBCC CHECKIDENT (PhaseDataSourceMap, RESEED, 1581234)
+
+DELETE FROM  [PasswordHistory]
+DBCC CHECKIDENT (PasswordHistory, RESEED, 1591234)
+
+DELETE FROM  [Organization]
+DBCC CHECKIDENT (Organization, RESEED, 1601234)
+
+DELETE FROM  [LoginActivity]
+DBCC CHECKIDENT (LoginActivity, RESEED, 1611234)
+
+DELETE FROM  [Localization]
+DBCC CHECKIDENT (Localization, RESEED, 1621234)
+
+DELETE FROM  [Intervention]
+DBCC CHECKIDENT (Intervention, RESEED, 1631234)
+
+DELETE FROM  [IndicationNoteConfiguration]
+DBCC CHECKIDENT (IndicationNoteConfiguration, RESEED, 1641234)
+
+DELETE FROM  [GuidelineSection]
+DBCC CHECKIDENT (GuidelineSection, RESEED, 1651234)
+
+DELETE FROM  [Guidelines]
+DBCC CHECKIDENT (Guidelines, RESEED, 1661234)
+
+DELETE FROM  [GroupRole]
+DBCC CHECKIDENT (GroupRole, RESEED, 1671234)
+
+DELETE FROM  [FavoriteGuideline]
+DBCC CHECKIDENT (FavoriteGuideline, RESEED, 1681234)
+
+DELETE FROM  [Facility]
+DBCC CHECKIDENT (Facility, RESEED, 1691234)
+
+DELETE FROM  [EpisodeInsurance]
+DBCC CHECKIDENT (EpisodeInsurance, RESEED, 1701234)
+
+DELETE FROM  [DynamicTableParameter]
+DBCC CHECKIDENT (DynamicTableParameter, RESEED, 1711234)
+
+DELETE FROM  [DataSource]
+DBCC CHECKIDENT (DataSource, RESEED, 1721234)
+
+DELETE FROM  [ContentVersion]
+DBCC CHECKIDENT (ContentVersion, RESEED, 1731234)
+
+DELETE FROM  [Contact]
+DBCC CHECKIDENT (Contact, RESEED, 1741234)
+
+DELETE FROM  [CaseProblemNote]
+DBCC CHECKIDENT (CaseProblemNote, RESEED, 1751234)
+
+DELETE FROM  [CaseGoalNote]
+DBCC CHECKIDENT (CaseGoalNote, RESEED, 1761234)
+
+DELETE FROM  [BDL_UserSession]
+DBCC CHECKIDENT (BDL_UserSession, RESEED, 1771234)
+
+DELETE FROM  [AutoAuthListItem]
+DBCC CHECKIDENT (AutoAuthListItem, RESEED, 1781234)
+
+DELETE FROM  [AuthorizationEntryPointSubject]
+DBCC CHECKIDENT (AuthorizationEntryPointSubject, RESEED, 1791234)
+
+DELETE FROM  [AppReports]
+DBCC CHECKIDENT (AppReports, RESEED, 1801234)
+
+DELETE FROM  [AppLock]
+DBCC CHECKIDENT (AppLock, RESEED, 1811234)
+
+DELETE FROM  [ApplicationParameter]
+DBCC CHECKIDENT (ApplicationParameter, RESEED, 1821234)
+
+DELETE FROM  [APIRequestField]
+DBCC CHECKIDENT (APIRequestField, RESEED, 1831234)
+
+DELETE FROM  [Answer]
+DBCC CHECKIDENT (Answer, RESEED, 1841234)
+
+DELETE FROM  [AccessControlGroupUser]
+DBCC CHECKIDENT (AccessControlGroupUser, RESEED, 1851234)
+
+DELETE FROM  [VIPActivity]
+DBCC CHECKIDENT (VIPActivity, RESEED, 1861234)
+
+DELETE FROM  [VersionMaster]
+DBCC CHECKIDENT (VersionMaster, RESEED, 1871234)
+
+DELETE FROM  [UserSessionData]
+DBCC CHECKIDENT (UserSessionData, RESEED, 1881234)
+
+DELETE FROM  [UserSessionArchive]
+DBCC CHECKIDENT (UserSessionArchive, RESEED, 1891234)
+
+DELETE FROM  [UserPrivilegeChangeLog]
+DBCC CHECKIDENT (UserPrivilegeChangeLog, RESEED, 1901234)
+
+DELETE FROM  [UdfValue]
+DBCC CHECKIDENT (UdfValue, RESEED, 1911234)
+
+DELETE FROM  [UdfType]
+DBCC CHECKIDENT (UdfType, RESEED, 1921234)
+
+DELETE FROM  [UdfListItem]
+DBCC CHECKIDENT (UdfListItem, RESEED, 1931234)
+
+DELETE FROM  [SubjectType]
+DBCC CHECKIDENT (SubjectType, RESEED, 1941234)
+
+DELETE FROM  [SubjectEntity]
+DBCC CHECKIDENT (SubjectEntity, RESEED, 1951234)
+
+DELETE FROM  [SubjectCalculator]
+DBCC CHECKIDENT (SubjectCalculator, RESEED, 1961234)
+
+DELETE FROM  [StaticSearchCriteriaType]
+DBCC CHECKIDENT (StaticSearchCriteriaType, RESEED, 1971234)
+
+DELETE FROM  [StaticSearchCodeType]
+DBCC CHECKIDENT (StaticSearchCodeType, RESEED, 1981234)
+
+DELETE FROM  [StaticFootnote]
+DBCC CHECKIDENT (StaticFootnote, RESEED, 1991234)
+
+DELETE FROM  [StaticCitation]
+DBCC CHECKIDENT (StaticCitation, RESEED, 2001234)
+
+DELETE FROM  [StaticAssistantSurgeonSearch]
+DBCC CHECKIDENT (StaticAssistantSurgeonSearch, RESEED, 2011234)
+
+DELETE FROM  [Sections]
+DBCC CHECKIDENT (Sections, RESEED, 2021234)
+
+DELETE FROM  [SearchTerms]
+DBCC CHECKIDENT (SearchTerms, RESEED, 2031234)
+
+DELETE FROM  [SearchGuidelineRelated]
+DBCC CHECKIDENT (SearchGuidelineRelated, RESEED, 2041234)
+
+DELETE FROM  [SearchCodeRelated]
+DBCC CHECKIDENT (SearchCodeRelated, RESEED, 2051234)
+
+DELETE FROM  [RuleSet]
+DBCC CHECKIDENT (RuleSet, RESEED, 2061234)
+
+DELETE FROM  [RPTViewDD]
+DBCC CHECKIDENT (RPTViewDD, RESEED, 2071234)
+
+DELETE FROM  [RptReport]
+DBCC CHECKIDENT (RptReport, RESEED, 2081234)
+
+DELETE FROM  [RptDataSource]
+DBCC CHECKIDENT (RptDataSource, RESEED, 2091234)
+
+DELETE FROM  [RptCategoryType]
+DBCC CHECKIDENT (RptCategoryType, RESEED, 2101234)
+
+DELETE FROM  [Role]
+DBCC CHECKIDENT (Role, RESEED, 2111234)
+
+DELETE FROM  [ReviewerGroupMember]
+DBCC CHECKIDENT (ReviewerGroupMember, RESEED, 2121234)
+
+DELETE FROM  [ReviewerGroup]
+DBCC CHECKIDENT (ReviewerGroup, RESEED, 2131234)
+
+DELETE FROM  [ResourceType]
+DBCC CHECKIDENT (ResourceType, RESEED, 2141234)
+
+--DELETE FROM  [RefYearMonth]
+--DBCC CHECKIDENT (RefYearMonth, RESEED, 2151234)
+
+--DELETE FROM  [RefWorkQueueAction]
+--DBCC CHECKIDENT (RefWorkQueueAction, RESEED, 2161234)
+
+--DELETE FROM  [RefVarianceResolution]
+--DBCC CHECKIDENT (RefVarianceResolution, RESEED, 2171234)
+
+--DELETE FROM  [RefVarianceReasonType]
+--DBCC CHECKIDENT (RefVarianceReasonType, RESEED, 2181234)
+
+--DELETE FROM  [RefVarianceCategoryType]
+--DBCC CHECKIDENT (RefVarianceCategoryType, RESEED, 2191234)
+
+--DELETE FROM  [RefUserSessionEndAction]
+--DBCC CHECKIDENT (RefUserSessionEndAction, RESEED, 2201234)
+
+--DELETE FROM  [RefUserInterface]
+--DBCC CHECKIDENT (RefUserInterface, RESEED, 2211234)
+
+--DELETE FROM  [RefUnitOfMeasure]
+--DBCC CHECKIDENT (RefUnitOfMeasure, RESEED, 2221234)
+
+--DELETE FROM  [RefTimeFormat]
+--DBCC CHECKIDENT (RefTimeFormat, RESEED, 2231234)
+
+--DELETE FROM  [RefTaskType]
+--DBCC CHECKIDENT (RefTaskType, RESEED, 2241234)
+
+--DELETE FROM  [RefTaskStatus]
+--DBCC CHECKIDENT (RefTaskStatus, RESEED, 2251234)
+
+--DELETE FROM  [RefTaskReason]
+--DBCC CHECKIDENT (RefTaskReason, RESEED, 2261234)
+
+--DELETE FROM  [RefTaskPriority]
+--DBCC CHECKIDENT (RefTaskPriority, RESEED, 2271234)
+
+--DELETE FROM  [RefSystemDataType]
+--DBCC CHECKIDENT (RefSystemDataType, RESEED, 2281234)
+
+--DELETE FROM  [RefStratificationLevel]
+--DBCC CHECKIDENT (RefStratificationLevel, RESEED, 2291234)
+
+--DELETE FROM  [RefState]
+--DBCC CHECKIDENT (RefState, RESEED, 2301234)
+
+--DELETE FROM  [RefSpecialty]
+--DBCC CHECKIDENT (RefSpecialty, RESEED, 2311234)
+
+--DELETE FROM  [RefSessionActivity]
+--DBCC CHECKIDENT (RefSessionActivity, RESEED, 2321234)
+
+--DELETE FROM  [RefSectionType]
+--DBCC CHECKIDENT (RefSectionType, RESEED, 2331234)
+
+--DELETE FROM  [RefSalutationType]
+--DBCC CHECKIDENT (RefSalutationType, RESEED, 2341234)
+
+--DELETE FROM  [RefRuleStatus]
+--DBCC CHECKIDENT (RefRuleStatus, RESEED, 2351234)
+
+--DELETE FROM  [RefRPTLOSText]
+--DBCC CHECKIDENT (RefRPTLOSText, RESEED, 2361234)
+
+--DELETE FROM  [RefRPTConsolidateMCG]
+--DBCC CHECKIDENT (RefRPTConsolidateMCG, RESEED, 2371234)
+
+--DELETE FROM  [RefRPTBenchmarkLOS]
+--DBCC CHECKIDENT (RefRPTBenchmarkLOS, RESEED, 2381234)
+
+--DELETE FROM  [RefRoute]
+--DBCC CHECKIDENT (RefRoute, RESEED, 2391234)
+
+--DELETE FROM  [RefRoom]
+--DBCC CHECKIDENT (RefRoom, RESEED, 2401234)
+
+--DELETE FROM  [RefReviewStatus]
+--DBCC CHECKIDENT (RefReviewStatus, RESEED, 2411234)
+
+--DELETE FROM  [RefRelationship]
+--DBCC CHECKIDENT (RefRelationship, RESEED, 2421234)
+
+--DELETE FROM  [RefReferralSource]
+--DBCC CHECKIDENT (RefReferralSource, RESEED, 2431234)
+
+--DELETE FROM  [RefQuestionType]
+--DBCC CHECKIDENT (RefQuestionType, RESEED, 2441234)
+
+--DELETE FROM  [RefQuestionLogicType]
+--DBCC CHECKIDENT (RefQuestionLogicType, RESEED, 2451234)
+
+--DELETE FROM  [RefQualityMeasureGroup]
+--DBCC CHECKIDENT (RefQualityMeasureGroup, RESEED, 2461234)
+
+--DELETE FROM  [RefQualityMeasure]
+--DBCC CHECKIDENT (RefQualityMeasure, RESEED, 2471234)
+
+--DELETE FROM  [RefPublication]
+--DBCC CHECKIDENT (RefPublication, RESEED, 2481234)
+
+--DELETE FROM  [RefProviderType]
+--DBCC CHECKIDENT (RefProviderType, RESEED, 2491234)
+
+--DELETE FROM  [RefProviderTitle]
+--DBCC CHECKIDENT (RefProviderTitle, RESEED, 2501234)
+
+--DELETE FROM  [RefProgressionPeriod]
+--DBCC CHECKIDENT (RefProgressionPeriod, RESEED, 2511234)
+
+--DELETE FROM  [RefProgressionElementCategory]
+--DBCC CHECKIDENT (RefProgressionElementCategory, RESEED, 2521234)
+
+--DELETE FROM  [RefProgressionElement]
+--DBCC CHECKIDENT (RefProgressionElement, RESEED, 2531234)
+
+--DELETE FROM  [RefProgressionBehavior]
+--DBCC CHECKIDENT (RefProgressionBehavior, RESEED, 2541234)
+
+--DELETE FROM  [RefProfileRole]
+--DBCC CHECKIDENT (RefProfileRole, RESEED, 2551234)
+
+--DELETE FROM  [RefProfileCategory]
+--DBCC CHECKIDENT (RefProfileCategory, RESEED, 2561234)
+
+--DELETE FROM  [RefProblemResolution]
+--DBCC CHECKIDENT (RefProblemResolution, RESEED, 2571234)
+
+--DELETE FROM  [RefPointOfCare]
+--DBCC CHECKIDENT (RefPointOfCare, RESEED, 2581234)
+
+--DELETE FROM  [RefPlanName]
+--DBCC CHECKIDENT (RefPlanName, RESEED, 2591234)
+
+--DELETE FROM  [RefPage]
+--DBCC CHECKIDENT (RefPage, RESEED, 2601234)
+
+--DELETE FROM  [RefOrganizationType]
+--DBCC CHECKIDENT (RefOrganizationType, RESEED, 2611234)
+
+--DELETE FROM  [RefOperator]
+--DBCC CHECKIDENT (RefOperator, RESEED, 2621234)
+
+--DELETE FROM  [RefNoteType]
+--DBCC CHECKIDENT (RefNoteType, RESEED, 2631234)
+
+--DELETE FROM  [RefNoteSubjectType]
+--DBCC CHECKIDENT (RefNoteSubjectType, RESEED, 2641234)
+
+--DELETE FROM  [RefNoteSubject]
+--DBCC CHECKIDENT (RefNoteSubject, RESEED, 2651234)
+
+--DELETE FROM  [RefNoteConfiguration]
+--DBCC CHECKIDENT (RefNoteConfiguration, RESEED, 2661234)
+
+--DELETE FROM  [RefMonth]
+--DBCC CHECKIDENT (RefMonth, RESEED, 2671234)
+
+--DELETE FROM  [RefMessageType]
+--DBCC CHECKIDENT (RefMessageType, RESEED, 2681234)
+
+--DELETE FROM  [RefMenu]
+--DBCC CHECKIDENT (RefMenu, RESEED, 2691234)
+
+--DELETE FROM  [RefLoginActivityStatus]
+--DBCC CHECKIDENT (RefLoginActivityStatus, RESEED, 2701234)
+
+--DELETE FROM  [RefLogicOperator]
+--DBCC CHECKIDENT (RefLogicOperator, RESEED, 2711234)
+
+--DELETE FROM  [RefLicensableFeature]
+--DBCC CHECKIDENT (RefLicensableFeature, RESEED, 2721234)
+
+--DELETE FROM  [RefLevelOfCare]
+--DBCC CHECKIDENT (RefLevelOfCare, RESEED, 2731234)
+
+--DELETE FROM  [RefInterventionType]
+--DBCC CHECKIDENT (RefInterventionType, RESEED, 2741234)
+
+--DELETE FROM  [RefInputType]
+--DBCC CHECKIDENT (RefInputType, RESEED, 2751234)
+
+--DELETE FROM  [RefIdentificationSource]
+--DBCC CHECKIDENT (RefIdentificationSource, RESEED, 2761234)
+
+--DELETE FROM  [RefGuidelineState]
+--DBCC CHECKIDENT (RefGuidelineState, RESEED, 2771234)
+
+--DELETE FROM  [RefGuideline]
+--DBCC CHECKIDENT (RefGuideline, RESEED, 2781234)
+
+--DELETE FROM  [RefGender]
+--DBCC CHECKIDENT (RefGender, RESEED, 2791234)
+
+--DELETE FROM  [RefFrequency]
+--DBCC CHECKIDENT (RefFrequency, RESEED, 2801234)
+
+--DELETE FROM  [RefFloor]
+--DBCC CHECKIDENT (RefFloor, RESEED, 2811234)
+
+--DELETE FROM  [RefFieldSize]
+--DBCC CHECKIDENT (RefFieldSize, RESEED, 2821234)
+
+--DELETE FROM  [RefFacilityType]
+--DBCC CHECKIDENT (RefFacilityType, RESEED, 2831234)
+
+--DELETE FROM  [RefEpisodeType]
+--DBCC CHECKIDENT (RefEpisodeType, RESEED, 2841234)
+
+--DELETE FROM  [RefEpisodeState]
+--DBCC CHECKIDENT (RefEpisodeState, RESEED, 2851234)
+
+--DELETE FROM  [RefEpisodePendReason]
+--DBCC CHECKIDENT (RefEpisodePendReason, RESEED, 2861234)
+
+--DELETE FROM  [RefEnrollmentStatus]
+--DBCC CHECKIDENT (RefEnrollmentStatus, RESEED, 2871234)
+
+--DELETE FROM  [RefEncounterType]
+--DBCC CHECKIDENT (RefEncounterType, RESEED, 2881234)
+
+--DELETE FROM  [RefDuration]
+--DBCC CHECKIDENT (RefDuration, RESEED, 2891234)
+
+--DELETE FROM  [RefDischargeTo]
+--DBCC CHECKIDENT (RefDischargeTo, RESEED, 2901234)
+
+--DELETE FROM  [RefDateFormat]
+--DBCC CHECKIDENT (RefDateFormat, RESEED, 2911234)
+
+--DELETE FROM  [RefDataType]
+--DBCC CHECKIDENT (RefDataType, RESEED, 2921234)
+
+--DELETE FROM  [RefDataMaster]
+--DBCC CHECKIDENT (RefDataMaster, RESEED, 2931234)
+
+--DELETE FROM  [RefCountry]
+--DBCC CHECKIDENT (RefCountry, RESEED, 2941234)
+
+--DELETE FROM  [RefControl]
+--DBCC CHECKIDENT (RefControl, RESEED, 2951234)
+
+--DELETE FROM  [RefContactType]
+--DBCC CHECKIDENT (RefContactType, RESEED, 2961234)
+
+--DELETE FROM  [RefContactConsentSource]
+--DBCC CHECKIDENT (RefContactConsentSource, RESEED, 2971234)
+
+--DELETE FROM  [RefContactConsentGiven]
+--DBCC CHECKIDENT (RefContactConsentGiven, RESEED, 2981234)
+
+--DELETE FROM  [RefConsentType]
+--DBCC CHECKIDENT (RefConsentType, RESEED, 2991234)
+
+--DELETE FROM  [RefClosureReason]
+--DBCC CHECKIDENT (RefClosureReason, RESEED, 3001234)
+
+--DELETE FROM  [RefCaseStatusType]
+--DBCC CHECKIDENT (RefCaseStatusType, RESEED, 3011234)
+
+--DELETE FROM  [RefCaseInterventionStatus]
+--DBCC CHECKIDENT (RefCaseInterventionStatus, RESEED, 3021234)
+
+--DELETE FROM  [RefCaseGoalType]
+--DBCC CHECKIDENT (RefCaseGoalType, RESEED, 3031234)
+
+--DELETE FROM  [RefCaseGoalStatus]
+--DBCC CHECKIDENT (RefCaseGoalStatus, RESEED, 3041234)
+
+--DELETE FROM  [RefCaseGoalPriority]
+--DBCC CHECKIDENT (RefCaseGoalPriority, RESEED, 3051234)
+
+--DELETE FROM  [RefCareflowNodeType]
+--DBCC CHECKIDENT (RefCareflowNodeType, RESEED, 3061234)
+
+--DELETE FROM  [RefCareDayProviderType]
+--DBCC CHECKIDENT (RefCareDayProviderType, RESEED, 3071234)
+
+--DELETE FROM  [RefBuilding]
+--DBCC CHECKIDENT (RefBuilding, RESEED, 3081234)
+
+--DELETE FROM  [RefBranchLogicType]
+--DBCC CHECKIDENT (RefBranchLogicType, RESEED, 3091234)
+
+--DELETE FROM  [RefBoolean]
+--DBCC CHECKIDENT (RefBoolean, RESEED, 3101234)
+
+--DELETE FROM  [RefBed]
+--DBCC CHECKIDENT (RefBed, RESEED, 3111234)
+
+--DELETE FROM  [RefAuthRequestUnit]
+--DBCC CHECKIDENT (RefAuthRequestUnit, RESEED, 3121234)
+
+--DELETE FROM  [RefAuthRequestType]
+--DBCC CHECKIDENT (RefAuthRequestType, RESEED, 3131234)
+
+--DELETE FROM  [RefAuthRequestSubmitStatus]
+--DBCC CHECKIDENT (RefAuthRequestSubmitStatus, RESEED, 3141234)
+
+--DELETE FROM  [RefAuthRequestStatus]
+--DBCC CHECKIDENT (RefAuthRequestStatus, RESEED, 3151234)
+
+--DELETE FROM  [RefAuthRequestItemSubmitStatus]
+--DBCC CHECKIDENT (RefAuthRequestItemSubmitStatus, RESEED, 3161234)
+
+--DELETE FROM  [RefAuthRequestCodeStatus]
+--DBCC CHECKIDENT (RefAuthRequestCodeStatus, RESEED, 3171234)
+
+--DELETE FROM  [RefAuthRequestArtifactType]
+--DBCC CHECKIDENT (RefAuthRequestArtifactType, RESEED, 3181234)
+
+--DELETE FROM  [RefAssessmentType]
+--DBCC CHECKIDENT (RefAssessmentType, RESEED, 3191234)
+
+--DELETE FROM  [RefAssessmentStatus]
+--DBCC CHECKIDENT (RefAssessmentStatus, RESEED, 3201234)
+
+--DELETE FROM  [RefApplication]
+--DBCC CHECKIDENT (RefApplication, RESEED, 3211234)
+
+--DELETE FROM  [RefAnswerType]
+--DBCC CHECKIDENT (RefAnswerType, RESEED, 3221234)
+
+DELETE FROM  [QualityMeasures]
+DBCC CHECKIDENT (QualityMeasures, RESEED, 3231234)
+
+DELETE FROM  [QualityMeasureGroups]
+DBCC CHECKIDENT (QualityMeasureGroups, RESEED, 3241234)
+
+DELETE FROM  [ProviderIDSourceGenerator]
+DBCC CHECKIDENT (ProviderIDSourceGenerator, RESEED, 3251234)
+
+DELETE FROM  [ProgressionCategories]
+DBCC CHECKIDENT (ProgressionCategories, RESEED, 3261234)
+
+DELETE FROM  [Program]
+DBCC CHECKIDENT (Program, RESEED, 3271234)
+
+DELETE FROM  [Products]
+DBCC CHECKIDENT (Products, RESEED, 3281234)
+
+DELETE FROM  [Problem]
+DBCC CHECKIDENT (Problem, RESEED, 3291234)
+
+DELETE FROM  [Phase]
+DBCC CHECKIDENT (Phase, RESEED, 3301234)
+
+DELETE FROM  [PatientListView]
+DBCC CHECKIDENT (PatientListView, RESEED, 3311234)
+
+DELETE FROM  [PatientIDSourceGenerator]
+DBCC CHECKIDENT (PatientIDSourceGenerator, RESEED, 3321234)
+
+DELETE FROM  [PatchVersion]
+DBCC CHECKIDENT (PatchVersion, RESEED, 3331234)
+
+DELETE FROM  [Operator]
+DBCC CHECKIDENT (Operator, RESEED, 3341234)
+
+DELETE FROM  [NoiseWords]
+DBCC CHECKIDENT (NoiseWords, RESEED, 3351234)
+
+DELETE FROM  [Message]
+DBCC CHECKIDENT (Message, RESEED, 3361234)
+
+DELETE FROM  [LockableTable]
+DBCC CHECKIDENT (LockableTable, RESEED, 3371234)
+
+DELETE FROM  [LicenseKey]
+DBCC CHECKIDENT (LicenseKey, RESEED, 3381234)
+
+DELETE FROM  [InterfaceLog]
+DBCC CHECKIDENT (InterfaceLog, RESEED, 3391234)
+
+DELETE FROM  [HL7_ProviderUDF]
+DBCC CHECKIDENT (HL7_ProviderUDF, RESEED, 3401234)
+
+DELETE FROM  [HL7_PatientUDF]
+DBCC CHECKIDENT (HL7_PatientUDF, RESEED, 3411234)
+
+DELETE FROM  [HL7_FacilityUDF]
+DBCC CHECKIDENT (HL7_FacilityUDF, RESEED, 3421234)
+
+DELETE FROM  [HL7_EpisodeUDF]
+DBCC CHECKIDENT (HL7_EpisodeUDF, RESEED, 3431234)
+
+DELETE FROM  [HL7_EpisodeFull]
+DBCC CHECKIDENT (HL7_EpisodeFull, RESEED, 3441234)
+
+DELETE FROM  [HL7_ClientConfiguration]
+DBCC CHECKIDENT (HL7_ClientConfiguration, RESEED, 3451234)
+
+DELETE FROM  [GuidelineTypes]
+DBCC CHECKIDENT (GuidelineTypes, RESEED, 3461234)
+
+DELETE FROM  [GuidelineLog]
+DBCC CHECKIDENT (GuidelineLog, RESEED, 3471234)
+
+DELETE FROM  [GuidelineCache]
+DBCC CHECKIDENT (GuidelineCache, RESEED, 3481234)
+
+DELETE FROM  [Goal]
+DBCC CHECKIDENT (Goal, RESEED, 3491234)
+
+DELETE FROM  [FootNotes]
+DBCC CHECKIDENT (FootNotes, RESEED, 3501234)
+
+DELETE FROM  [FacilityIDSourceGenerator]
+DBCC CHECKIDENT (FacilityIDSourceGenerator, RESEED, 3511234)
+
+DELETE FROM  [ErrorLog]
+DBCC CHECKIDENT (ErrorLog, RESEED, 3521234)
+
+DELETE FROM  [EpisodeSummaryParameter]
+DBCC CHECKIDENT (EpisodeSummaryParameter, RESEED, 3531234)
+
+DELETE FROM  [EpisodeSummaryBatch]
+DBCC CHECKIDENT (EpisodeSummaryBatch, RESEED, 3541234)
+
+DELETE FROM  [EpisodeIDSourceGenerator]
+DBCC CHECKIDENT (EpisodeIDSourceGenerator, RESEED, 3551234)
+
+DELETE FROM  [EpisodeCode]
+DBCC CHECKIDENT (EpisodeCode, RESEED, 3561234)
+
+DELETE FROM  [DynamicTable]
+DBCC CHECKIDENT (DynamicTable, RESEED, 3571234)
+
+DELETE FROM  [Definitions]
+DBCC CHECKIDENT (Definitions, RESEED, 3581234)
+
+DELETE FROM  [DefinitionIndication]
+DBCC CHECKIDENT (DefinitionIndication, RESEED, 3591234)
+
+DELETE FROM  [DataSourceType]
+DBCC CHECKIDENT (DataSourceType, RESEED, 3601234)
+
+DELETE FROM  [DataSourceReferenceDataSet]
+DBCC CHECKIDENT (DataSourceReferenceDataSet, RESEED, 3611234)
+
+DELETE FROM  [ContentEdition]
+DBCC CHECKIDENT (ContentEdition, RESEED, 3621234)
+
+DELETE FROM  [ColumnTemp]
+DBCC CHECKIDENT (ColumnTemp, RESEED, 3631234)
+
+DELETE FROM  [Column]
+DBCC CHECKIDENT (Column, RESEED, 3641234)
+
+DELETE FROM  [CodeSet]
+DBCC CHECKIDENT (CodeSet, RESEED, 3651234)
+
+DELETE FROM  [Client]
+DBCC CHECKIDENT (Client, RESEED, 3661234)
+
+DELETE FROM  [Citations]
+DBCC CHECKIDENT (Citations, RESEED, 3671234)
+
+DELETE FROM  [ChangeHistory]
+DBCC CHECKIDENT (ChangeHistory, RESEED, 3681234)
+
+DELETE FROM  [CCGChangeHistory]
+DBCC CHECKIDENT (CCGChangeHistory, RESEED, 3691234)
+
+DELETE FROM  [CaseIDSourceGenerator]
+DBCC CHECKIDENT (CaseIDSourceGenerator, RESEED, 3701234)
+
+DELETE FROM  [CaseGoalREDate]
+DBCC CHECKIDENT (CaseGoalREDate, RESEED, 3711234)
+
+DELETE FROM  [CaseDPCode]
+DBCC CHECKIDENT (CaseDPCode, RESEED, 3721234)
+
+DELETE FROM  [CareFlowHeadings]
+DBCC CHECKIDENT (CareFlowHeadings, RESEED, 3731234)
+
+DELETE FROM  [BenefitPlanCodeGenerator]
+DBCC CHECKIDENT (BenefitPlanCodeGenerator, RESEED, 3741234)
+
+DELETE FROM  [Barrier]
+DBCC CHECKIDENT (Barrier, RESEED, 3751234)
+
+DELETE FROM  [AutoAuthOutboundMessage]
+DBCC CHECKIDENT (AutoAuthOutboundMessage, RESEED, 3761234)
+
+DELETE FROM  [AutoAuthOutboundLog]
+DBCC CHECKIDENT (AutoAuthOutboundLog, RESEED, 3771234)
+
+DELETE FROM  [AutoAuthListItemType]
+DBCC CHECKIDENT (AutoAuthListItemType, RESEED, 3781234)
+
+DELETE FROM  [AutoAuthList]
+DBCC CHECKIDENT (AutoAuthList, RESEED, 3791234)
+
+DELETE FROM  [AutoAuthDisclaimer]
+DBCC CHECKIDENT (AutoAuthDisclaimer, RESEED, 3801234)
+
+DELETE FROM  [AuthorizationStatusHistory]
+DBCC CHECKIDENT (AuthorizationStatusHistory, RESEED, 3811234)
+
+DELETE FROM  [AuthorizationRequestArtifact]
+DBCC CHECKIDENT (AuthorizationRequestArtifact, RESEED, 3821234)
+
+DELETE FROM  [AuthorizationEntryPoint]
+DBCC CHECKIDENT (AuthorizationEntryPoint, RESEED, 3831234)
+
+DELETE FROM  [AppUser]
+DBCC CHECKIDENT (AppUser, RESEED, 3841234)
+
+DELETE FROM  [AppReportCategory]
+DBCC CHECKIDENT (AppReportCategory, RESEED, 3851234)
+
+DELETE FROM  [ApplicationVersion]
+DBCC CHECKIDENT (ApplicationVersion, RESEED, 3861234)
+
+DELETE FROM  [ApplicationParameterCategory]
+DBCC CHECKIDENT (ApplicationParameterCategory, RESEED, 3871234)
+
+DELETE FROM  [AppLastClear]
+DBCC CHECKIDENT (AppLastClear, RESEED, 3881234)
+
+DELETE FROM  [AppGroup]
+DBCC CHECKIDENT (AppGroup, RESEED, 3891234)
+
+DELETE FROM  [APIRequest]
+DBCC CHECKIDENT (APIRequest, RESEED, 3901234)
+
+DELETE FROM  [APIFieldKey]
+DBCC CHECKIDENT (APIFieldKey, RESEED, 3911234)
+
+DELETE FROM  [Annotations]
+DBCC CHECKIDENT (Annotations, RESEED, 3921234)
+
+DELETE FROM  [AdminActivity]
+DBCC CHECKIDENT (AdminActivity, RESEED, 3931234)
+
+DELETE FROM  [AccessType]
+DBCC CHECKIDENT (AccessType, RESEED, 3941234)
+
+DELETE FROM  [AccessControlGroup]
+DBCC CHECKIDENT (AccessControlGroup, RESEED, 3951234)

@@ -1,0 +1,266 @@
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+NAME				: cgasp_GetEpisodeSearchResultsByID
+AUTHOR			: Prabhat Tripathi
+DATE				: 09/08/2005
+LAST REV			: 09/08/2005
+REVISION HISTORY		: 
+
+
+PURPOSE				: Retrieving Episode Info related to either patient, facility or provider
+BUSINESS RULES		:	
+						- 1. Search Episodes
+CREATES			: N/A
+USES				: 
+
+						- T: Episode
+PARAMETERS IN		: 
+					
+						
+PARAMETERS OUT		: @Return returns
+						- (0)	: Successful
+						- (-1)	: Generic failure
+RELATIONS			: <Document the indexes ava.>
+GOOD JOINS			: <Document the joins used> 
+OTHERS				: 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+CREATE        PROCEDURE     [cgasp_GetEpisodeSearchResultsByID] (
+		@UserSessionID	INT = 0,
+		@id int,
+		@type varchar(100),
+		@startIndex INT = 0 ,
+		@PageSize INT =  25,
+		@state int = 1,
+		@sortColumn VARCHAR(255) = 'LastModifiedDate',
+		@sort VARCHAR(5)= 'DESC',
+		@recordCount INT OUT,
+		@Debug		bit = 0
+	)
+AS
+
+SET NOCOUNT ON  
+SET ROWCOUNT 0
+
+DECLARE @ReadAccessTypeBit INT
+SET @ReadAccessTypeBit = 2
+
+DECLARE @SQLStatement VARCHAR(8000)
+Declare @today datetime
+
+DECLARE @TableName varchar(100)
+
+Set @today=getutcdate()
+
+DECLARE @errCode INT;
+DECLARE @procName VARCHAR(50);
+	
+SET @errCode = 0;
+SET @procName = 'cgasp_GetEpisodeSearchResultsByID';
+
+IF @Debug=1
+BEGIN
+	PRINT @procName + ': Search for Episodes based on ID: ' + CAST(@id AS VARCHAR(5))
+	PRINT @procName + ': Create #TempTable table';
+END
+
+IF ( @recordCount < 0 ) -- App sometimes sends -1, which is bogus. This is a hack.
+	SET @recordCount = 5000;
+
+-- Create a temp table to hold the current page of data
+-- Add an ID column to count the records
+CREATE TABLE #TempTable  
+(  
+ ClientId INT IDENTITY PRIMARY KEY,  
+ EpisodeID INT,  
+ EpisodeIDSource VARCHAR(100),  
+ PatientName VARCHAR(255),  
+ PatientIDSource varchar(100),  
+ IsVIPFlag bit,  
+ IsCCGFlag bit,  
+ IsAAFlag bit,
+ IsUrgent bit,
+ ReviewerName VARCHAR(255),  
+ AdmitDate DATETIME,  
+ DischargeDate DateTime,  
+ EpisodeState int,  
+ LastModifiedDate DATETIME,  
+ FacilityName VARCHAR(102),  
+ NextReviewDate datetime,  
+ SecMask INT  
+)  
+  
+if Lower(@type) = 'provider'  
+begin  
+  
+ IF @Debug=1  
+ BEGIN  
+  PRINT @procName + ': Search on Provider';  
+ END  
+  
+ SELECT @SQLStatement = 'SELECT TOP ( ' + STR( @recordCount ) + ' )
+  E.[EpisodeID] AS EpisodeID,   
+  E.[EpisodeIDSource] AS EpisodeIDSource,   
+  CASE WHEN (P.[IsVip] = 0) THEN RTRIM(E.[PatientLastName] + '', '' + E.[PatientFirstName] + '' '' + ISNULL(E.[PatientMiddleInitial], '''')) ELSE ''XXXXXXXX'' END as PatientName,  
+  CASE WHEN (P.[IsVip] = 0) THEN P.[PATIENTIDSource] ELSE ''XXXX'' END as PatientIDSource,  
+  P.[IsVip] AS IsVipFlag,  
+  P.[CCGFlag] AS IsCCGFlag,  
+  Case When AutoAuth.EpisodeID is null then ''FALSE'' 
+	Else ''TRUE'' 
+  End AS IsAAFlag,
+  Case When (AutoAuth.Urgent = 0) OR AutoAuth.EpisodeID is null then ''FALSE'' 
+	Else ''TRUE'' 
+  End AS IsUrgent,
+  E.[ReviewerName] AS ReviewerName,   
+  E.[AdmitDate] AS AdmitDate,  
+  E.[DischargeDate] AS DischargeDate,  
+  E.[State] as EpisodeState,   
+  E.[LastModifiedDate] AS LastModifiedDate,  
+  E.[FacilityName] AS FacilityName,  
+  dbo.fx_cgasp_GetEpisodeNextReviewDate(E.[EpisodeID],''' + CONVERT(VARCHAR(20),@today) + ''') AS NextReviewDate,  
+     ES.EpisodeSecMask As SecMask  
+ FROM	(SELECT [Episode].*, a.RequestingProviderID FROM [Episode] LEFT JOIN [AuthorizationRequest] a ON a.EpisodeID = [Episode].EpisodeID WHERE Active=1 AND (PCPID=' + CONVERT(VARCHAR(10),@id) + '   
+													OR a.RequestingProviderID=' + CONVERT(VARCHAR(10),@id) + ' 
+													OR AdmittingProviderID=' + CONVERT(VARCHAR(10),@id) + '   
+													OR AttendingProviderID=' + CONVERT(VARCHAR(10),@id) + ')) E 
+		INNER JOIN(SELECT * FROM [Patient] WHERE Active = 1) P on P.PatientID = E.PatientID AND P.Active = 1  
+		INNER JOIN [PatientGroup] pg ON ( e.PatientID = pg.PatientID )  
+		INNER JOIN dbo.fx_cgasp_GetEpisodeSecMask_OneId(' + STR(@UserSessionID) + ',' + STR(@id) + ',''' + @Type + ''') ES ON (E.EpisodeID = ES.EpisodeID
+				AND ES.EpisodeSecMask & 2 = 2 )  
+		LEFT JOIN [AuthorizationRequest] AutoAuth ON AutoAuth.EpisodeID = E.EpisodeID
+  WHERE (E.State & ' + Convert(varchar(10),@state) +  ')=E.State ORDER BY ' + @sortColumn + ' ' + @sort  
+end  
+else if Lower(@type) = 'facility'  
+begin  
+  
+ IF @Debug=1  
+ BEGIN  
+  PRINT @procName + ': Search on Facility';  
+ END  
+  
+ SELECT @SQLStatement = 'SELECT  TOP ( ' + STR( @recordCount ) + ' )
+  E.[EpisodeID] AS EpisodeID,   
+  E.[EpisodeIDSource] AS EpisodeIDSource,   
+  CASE WHEN (P.[IsVip] = 0) THEN RTRIM(E.[PatientLastName] + '', '' + E.[PatientFirstName] + '' '' + ISNULL(E.[PatientMiddleInitial], '''')) ELSE ''XXXXXXXX'' END as PatientName,  
+  CASE WHEN (P.[IsVip] = 0) THEN P.[PATIENTIDSource] ELSE ''XXXX'' END as PatientIDSource,  
+  P.[IsVip] AS IsVIPFlag,  
+  P.[CCGFlag] AS IsCCGFlag,  
+  Case When AutoAuth.EpisodeID is null then ''FALSE'' 
+	Else ''TRUE'' 
+  End AS IsAAFlag,
+  Case When (AutoAuth.Urgent = 0) OR AutoAuth.EpisodeID is null then ''FALSE'' 
+	Else ''TRUE'' 
+  End AS IsUrgent,
+  E.[ReviewerName] AS ReviewerName,   
+  E.[AdmitDate] AS AdmitDate,   
+  E.[DischargeDate] AS DischargeDate,  
+  E.[State] as EpisodeState,  
+  E.[LastModifiedDate] AS LastModifiedDate,  
+  E.[FacilityName] AS FacilityName,  
+  dbo.fx_cgasp_GetEpisodeNextReviewDate(E.[EpisodeID],''' + CONVERT(VARCHAR(20),@today) + ''') AS NextReviewDate,  
+  ES.EpisodeSecMask As SecMask  
+ FROM	(SELECT * FROM [Episode] WHERE (FacilityID=' + CONVERT(VARCHAR(10),@id) + ') AND Active=1) E 
+		INNER JOIN (SELECT * FROM [Patient] WHERE (Active = 1)) P on P.PatientID = E.PatientID AND P.Active = 1  
+		INNER JOIN [PatientGroup] pg ON ( e.PatientID = pg.PatientID )  
+		INNER JOIN dbo.fx_cgasp_GetEpisodeSecMask_OneId(' + STR(@UserSessionID) + ',' + STR(@id) + ',''' + @Type + ''') ES ON (E.EpisodeID = ES.EpisodeID
+				AND ES.EpisodeSecMask & 2 = 2 ) 
+		LEFT JOIN AuthorizationRequest [AutoAuth] ON AutoAuth.EpisodeID = E.EpisodeID 
+ WHERE (E.State & ' + Convert(varchar(10),@state) +  ')=E.State ORDER BY ' + @sortColumn + ' ' + @sort  
+  
+end  
+else if lower(@type)='patient'  
+begin  
+ IF @Debug=1  
+ BEGIN  
+  PRINT @procName + ': Search on Patient';  
+ END  
+  
+ SELECT @SQLStatement = 'SELECT  TOP ( ' + STR( @recordCount ) + ' )
+  E.[EpisodeID] AS EpisodeID,   
+  E.[EpisodeIDSource] AS EpisodeIDSource,   
+  CASE WHEN (pp.[IsVip] = 0) THEN RTRIM(E.[PatientLastName] + '', '' + E.[PatientFirstName] + '' '' + ISNULL(E.[PatientMiddleInitial], '''')) ELSE ''XXXXXXXX'' END as PatientName,  
+  CASE WHEN (pp.[IsVip] = 0) THEN E.[PATIENTIDSource] ELSE ''XXXX'' END as PatientIDSource,  
+  pp.[IsVip] AS IsVIPFlag,  
+  pp.[CCGFlag] AS IsCCGFlag, 
+  Case When AutoAuth.EpisodeID is null then ''FALSE''
+	Else ''TRUE'' 
+  End as IsAAFlag,
+  Case When (AutoAuth.Urgent = 0) OR AutoAuth.EpisodeID is null then ''FALSE''
+	Else ''TRUE'' 
+  End as IsUrgent, 
+  E.[ReviewerName] AS ReviewerName,   
+  E.[AdmitDate] AS AdmitDate,   
+  E.[DischargeDate] AS DischargeDate,  
+  E.[State] as EpisodeState,  
+  E.[LastModifiedDate] AS LastModifiedDate,  
+  E.[FacilityName] AS FacilityName,  
+  dbo.fx_cgasp_GetEpisodeNextReviewDate(E.[EpisodeID],''' + CONVERT(VARCHAR(20),@today) + ''') AS NextReviewDate,  
+  ES.EpisodeSecMask As SecMask  
+ FROM	(SELECT * FROM [v_ParentPatient] WHERE ((ParentPatientID=' + CONVERT(VARCHAR(10),@id) + ') AND (Active = 1))) vpp 
+		INNER JOIN (SELECT * FROM [Episode] WHERE Active = 1) E  ON vpp.OriginalPatientID = E.PatientID 
+		INNER JOIN [Patient] pp  ON vpp.ParentPatientID = pp.PatientID  
+		INNER JOIN [PatientGroup] pg  ON ( vpp.OriginalPatientID  = pg.PatientID )  
+		INNER JOIN dbo.fx_cgasp_GetEpisodeSecMask_OneId(' + STR(@UserSessionID) + ',' + STR(@id) + ',''' + @Type + ''') ES ON (E.EpisodeID = ES.EpisodeID
+				AND ES.EpisodeSecMask & 2 = 2 )
+		LEFT JOIN [AuthorizationRequest] AutoAuth ON AutoAuth.EpisodeID = E.EpisodeID 
+ WHERE ((E.State & ' + Convert(varchar(10),@state) +  ')=E.State)  ORDER BY ' + @sortColumn + ' ' + @sort  
+end  
+
+
+IF @Debug=1
+BEGIN
+	PRINT @procName + ': Dynamic SQL: ' + @SQLStatement;
+END
+
+INSERT INTO #TempTable 
+(
+	EpisodeID,
+	EpisodeIDSource,
+	PatientName,
+	PatientIDSource,
+	IsVIPFlag,
+	IsCCGFlag,
+	IsAAFlag,
+	IsUrgent,
+	ReviewerName,
+	AdmitDate,
+	DischargeDate,
+	EpisodeState,
+	LastModifiedDate,
+	FacilityName,
+	NextReviewDate,
+	SecMask
+)
+EXEC (@SQLStatement)
+
+SELECT @recordCount = Count(1) FROM #TempTable;
+
+SELECT
+	EpisodeID, 
+	EpisodeIDSource,
+	PATIENTNAME,
+	PatientIDSource, 
+	IsVIPFlag,
+	IsCCGFlag,
+	IsAAFlag,
+	IsUrgent,
+	ReviewerName,
+	AdmitDate,
+	DischargeDate,
+	EpisodeState,
+	LastModifiedDate,
+	FacilityName ,
+	NextReviewDate,
+	SecMask
+  FROM
+	#TempTable TEMP
+ WHERE
+	TEMP.ClientID > @startIndex AND
+	TEMP.ClientID <= @startIndex + @PageSize
+ ORDER BY TEMP.ClientID;
+
+--Drop temp table
+DROP TABLE #TempTable
+
+
+SELECT @errCode = @errCode + @@ERROR;

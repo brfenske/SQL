@@ -1,0 +1,68 @@
+--Program
+SET IDENTITY_INSERT [iCCG].[Program] ON
+INSERT [iCCG].[Program] ([ProgramID], [Description], [Ordinal], [Active], [CreatedDate], [CreatedBy], [ModifiedDate], [ModifiedBy]) 
+VALUES (1, N'Healthy Babies', 1, 1, GETDATE(), 1, NULL, NULL)
+INSERT [iCCG].[Program] ([ProgramID], [Description], [Ordinal], [Active], [CreatedDate], [CreatedBy], [ModifiedDate], [ModifiedBy]) 
+VALUES (2, N'Healthy Heart', 2, 1, GETDATE(), 1, NULL, NULL)
+INSERT [iCCG].[Program] ([ProgramID], [Description], [Ordinal], [Active], [CreatedDate], [CreatedBy], [ModifiedDate], [ModifiedBy]) 
+VALUES (3, N'Healthy Moms/Healthy Babies', 3, 1, GETDATE(), 1, NULL, NULL)
+INSERT [iCCG].[Program] ([ProgramID], [Description], [Ordinal], [Active], [CreatedDate], [CreatedBy], [ModifiedDate], [ModifiedBy]) 
+VALUES (4, N'Managing Diabetes', 4, 1, GETDATE(), 1, NULL, NULL)
+SET IDENTITY_INSERT [iCCG].[Program] OFF
+GO
+
+
+-- ProgramGuideline
+SET IDENTITY_INSERT [iCCG].[ProgramGuideline] ON
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (1,1,'Introduction to Ambulatory Care','AC','ac_01b2',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (2,1,'Lower Extremity Angiography','AC','ac01_002',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (3,1,'Fluorescein Angiography','AC','ac01_003',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (4,1,'Visceral Angiography','AC','ac01_004',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (5,1,'Abdominal Aortic Angiography','AC','ac01_005',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (6,1,'Renal Angiography','AC','ac01_006',1,1,GETDATE(),1,NULL,NULL)
+
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (7,2,'Preterm Labor, Threatened: Observation Care','ISC','1049409v',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (8,2,'Pulmonary Embolism: Observation Care','ISC','0576109v',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (9,2,'Rib Fracture: Observation Care','ISC','0586049v',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (10,2,'Angina','PIM','PDI0018',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (11,2,'Chest Pain','PIM','PDI0021',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (12,2,'Preterm Labor, Threatened: Observation Care','ISC','1049409v',1,1,GETDATE(),1,NULL,NULL)
+
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (13,3,'Be ready to talk to the doctor - End of life','CCG','pted_537',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (14,3,'Be ready to talk to the doctor - Asthma','CCG','pted_109',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (15,3,'Be ready to talk to the doctor - Cancer','CCG','pted_398',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (16,3,'Be ready to talk to the doctor - Children with special health care needs','CCG','pted_582',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (17,3,'Be ready to talk to the doctor - Chronic pain','CCG','pted_363',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (18,3,'Be ready to talk to the doctor - Cystic fibrosis','CCG','pted_412',1,1,GETDATE(),1,NULL,NULL)
+
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (19,4,'Diabetes Mellitus - Referral Management','AC','095203ri',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (20,4,'Diabetes, Hypoglycemia','ISC','0952250b',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (21,4,'Diabetes in Pregnancy','ISC','0952200b',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (22,4,'Low Blood Sugar from Diabetes','PIM','PDI0277',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (23,4,'Be ready to talk to the doctor - Diabetes','CCG','pted_380',1,1,GETDATE(),1,NULL,NULL)
+INSERT INTO [iCCG].[ProgramGuideline] ([ProgramGuidelineID],[ProgramID],[GuidelineTitle],[ProductCode],[HSIM],[Ordinal],[Active],[CreatedDate],[CreatedBy],[ModifiedDate],[ModifiedBy]) 
+VALUES (24,4,'What to eat - Diabetes','CCG','pted_006',1,1,GETDATE(),1,NULL,NULL)
+SET IDENTITY_INSERT [iCCG].[ProgramGuideline] OFF
